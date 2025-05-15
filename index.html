@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crazy Six</title>
+<style>
+  @font-face {
+    font-family: 'font3';
+    src: url('fonts/adrip1.ttf') format('truetype');
+  }
+  body {
+    margin: 0; padding: 0;
+    background-color: #111;
+    color: #eee;
+    font-family: 'font3', Arial, sans-serif;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 80px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    border-bottom: 1px solid #444;
+    z-index: 100;
+  }
+  .logo img {
+    height: 70px;
+    cursor: pointer;
+    filter: brightness(10)ert(1);
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0; padding: 0;
+  }
+  nav ul li a {
+    color: #eee;
+    text-decoration: none;
+    font-size: 28px;
+    font-family: 'font3';
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  nav ul li a.active,
+  nav ul li a:hover {
+    color: #f02828;
+    font-weight: bold;
+  }
+  .icons {
+    display: flex;
+    gap: 20px;
+  }
+  .icons img {
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+  }
+  .icons img:hover {
+    transform: scale(1.2);
+    filter: brightness(0) invert(0.8) drop-shadow(0 0 6px #f02828);
+  }
+  main {
+    margin-top: 90px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+  }
+
+  #spray-text-container {
+    font-family: 'font3';
+    font-size: 70px;
+    color: #f02828;
+    user-select: none;
+    white-space: nowrap;
+    filter: drop-shadow(0 0 5px #f02828);
+    margin-bottom: 50px;
+    text-align: center;
+  }
+  /* INÍCIO */
+  #historia-container {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+    height: 600px;
+  }
+  #historia-texto {
+    flex: 1;
+    font-size: 26px;
+    line-height: 1.8;
+    color: #ddd;
+    overflow-y: auto;
+    padding-right: 15px;
+  }
+  #historia-imagem {
+    width: 450px;
+    height: 600px;
+    flex-shrink: 0;
+  }
+  #historia-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #f02828;
+    user-select: none;
+  }
+
+  /* GALERIA */
+  #galeria-container {
+    display: none;
+  }
+  .album {
+    margin-bottom: 40px;
+  }
+  .album h2 {
+    font-family: 'font3';
+    font-size: 40px;
+    color: #f02828;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #f02828;
+    padding-bottom: 8px;
+  }
+  .album-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .album-grid img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 0 8px #f02828;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .album-grid img:hover {
+    transform: scale(1.1);
+  }
+  .upload-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #f02828;
+    color: #fff;
+    border-radius: 6px;
+    font-family: 'font3';
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+  }
+  input[type="file"] {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="imagens/logo (2).png" alt="Crazy Six Logo" id="logo-crazy" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#" id="link-inicio" class="active">Início</a></li>
+      <li><a href="#" id="link-galeria">Galeria</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <img src="https://cdn-icons-png.flaticon.com/512/34/34568.png" alt="Carrinho" id="icone-carrinho" title="Carrinho" />
+    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Admin" id="icone-admin" title="Admin" />
+  </div>
+</header>
+
+<main>
+  <!-- INÍCIO -->
+  <section id="inicio-section">
+    <div id="spray-text-container"></div>
+
+    <div id="historia-container">
+      <div id="historia-texto">
+        <p>Crazy Six tá na ativa desde 2023<br />
+        não tem romantismo, tem guerra<br />
+        nossa arte fede tinta, corre na veia igual veneno<br />
+        grafite, pixo, tag — é tudo ataque<br />
+        a rua é trincheira, e o muro é onde a gente grita o que ninguém quer ouvir<br />
+        não seguimos regra, cuspimos em autoridade<br />
+        a lei? não reconhecemos<br />
+        a ordem? desrespeitamos<br />
+        governo é praga e a gente é peste na pele do sistema<br />
+        nossos traços são cicatriz de um povo silenciado<br />
+        não queremos paz, queremos impacto<br />
+        MADS, GEK, BALMY e FOOL — carregando no spray o peso de quem não abaixa a cabeça</p>
+      </div>
+      <div id="historia-imagem">
+        <img src="imagens/quemsomos.jpeg" alt="Quem Somos" />
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria-container">
+    <div class="album" id="album-midias">
+      <h2>Mídias</h2>
+      <div class="album-grid" id="grid-midias">
+        <img src="imagens/gek1.jpg" alt="GEK" title="GEK" />
+        <img src="imagens/fool grafiti.jpg" alt="FOOL" title="FOOL" />
+        <img src="imagens/balmy1.jpg" alt="BALMY" title="BALMY" />
+        <img src="imagens/7.jpeg" alt="MADS" title="MADS" />
+      </div>
+      <label class="upload-btn" for="upload-midias">Adicionar Imagem</label>
+      <input type="file" id="upload-midias" accept="image/*" multiple />
+    </div>
+
+    <div class="album" id="album-roles">
+      <h2>Roles</h2>
+      <div class="album-grid" id="grid-roles">
+        <img src="imagens/1.jpeg" alt="Role 1" title="Role 1" />
+        <img src="imagens/2.jpeg" alt="Role 2" title="Role 2" />
+        <img src="imagens/3.jpeg" alt="Role 3" title="Role 3" />
+        <img src="imagens/4.jpeg" alt="Role 4" title="Role 4" />
+        <img src="imagens/5.jpeg" alt="Role 5" title="Role 5" />
+        <img src="imagens/6.jpeg" alt="Role 6" title="Role 6" />
+      </div>
+      <label class="upload-btn" for="upload-roles">Adicionar Imagem</label>
+      <input type="file" id="upload-roles" accept="image/*" multiple />
+    </div>
+  </section>
+</main>
+
+<script>
+  const text = 'BEM VINDO A CRAZY SIX';
+  const container = document.getElementById('spray-text-container');
+  let index = 0;
+
+  function createSprayParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.className = 'spray-particle';
+    particle.style.position = 'absolute';
+    particle.style.left = `${x + (Math.random() * 10 - 5)}px`;
+    particle.style.top = `${y + (Math.random() * 10 - 5)}px`;
+    particle.style.width = '5px';
+    particle.style.height = '5px';
+    particle.style.backgroundColor = '#f02828';
+    particle.style.borderRadius = '50%';
+    particle.style.opacity = '0.8';
+    particle.style.pointerEvents = 'none';
+    container.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 1000);
+  }
+
+  function sprayWrite() {
+    if (index <= text.length) {
+      container.textContent = text.slice(0, index);
+      if (index > 0) {
+        const range = document.createRange();
+        range.setStart(container.firstChild || container, index - 1);
+        range.setEnd(container.firstChild || container, index);
+        const rect = range.getBoundingClientRect();
+        const parentRect = container.getBoundingClientRect();
+        if (rect.width !== 0 && rect.height !== 0) {
+          const x = rect.left - parentRect.left;
+          const y = rect.top - parentRect.top + rect.height / 2;
+          createSprayParticle(x, y);
+        }
+      }
+      index++;
+      setTimeout(sprayWrite, 200);
+    }
+  }
+  sprayWrite();
+
+  // Troca de telas
+  const linkInicio = document.getElementById('link-inicio');
+  const linkGaleria = document.getElementById('link-galeria');
+  const inicioSection = document.getElementById('inicio-section');
+  const galeriaContainer = document.getElementById('galeria-container');
+
+  linkInicio.addEventListener('click', e => {
+    e.preventDefault();
+    linkInicio.classList.add('active');
+    linkGaleria.classList.remove('active');
+    inicioSection.style.display = 'block';
+    galeriaContainer.style.display = 'none';
+  });
+
+  linkGaleria.addEventListener('click', e => {
+    e.preventDefault();
+    linkGaleria.classList.add('active');
+    linkInicio.classList.remove('active');
+    galeriaContainer.style.display = 'block';
+    inicioSection.style.display = 'none';
+  });
+
+  // Logo clicável volta ao início
+  document.getElementById('logo-crazy').addEventListener('click', e => {
+    e.preventDefault();
+    linkInicio.click();
+  });
+
+  // Upload de imagens para álbum Mídias
+  document.getElementById('upload-midias').addEventListener('change', function () {
+    const files = this.files;
+    const grid = document.getElementById('grid-midias');
+    for (const file of files) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const img = document.createElement('img');
+        img
+.src = e.target.result;
+img.alt = file.name;
+img.title = file.name;
+grid.appendChild(img);
+};
+reader.readAsDataURL(file);
+}
+this.value = '';
+});
+
+// Upload de imagens para álbum Roles
+document.getElementById('upload-roles').addEventListener('change', function () {
+const files = this.files;
+const grid = document.getElementById('grid-roles');
+for (const file of files) {
+const reader = new FileReader();
+reader.onload = function (e) {
+const img = document.createElement('img');
+img.src = e.target.result;
+img.alt = file.name;
+img.title = file.name;
+grid.appendChild(img);
+};
+reader.readAsDataURL(file);
+}
+this.value = '';
+});
+
+</script> </body> </html> 
