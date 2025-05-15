@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login do Admin</h2>
+    <input type="text" id="username" placeholder="Usuário" />
+    <input type="password" id="password" placeholder="Senha" />
+    <button onclick="login()">Entrar</button>
+    <p id="error-msg" style="color: red; display: none;">Usuário ou senha inválidos</p>
+  </div>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      if (user === 'admin' && pass === 'mads') {
+        // Salva a sessão e redireciona
+        localStorage.setItem('adminLogado', 'true');
+        window.location.href = 'admin.html';
+      } else {
+        document.getElementById('error-msg').style.display = 'block';
+      }
+    }
+  </script>
+
+   <footer class="rodape">
+  <span>Crazy6 © 2025</span>
+  <a href="https://instagram.com/havanaworks" target="_blank" class="insta-link">
+    <i class="fab fa-instagram"></i>
+    <span>@havanaworks</span>
+  </a>
+</footer>
+</footer>
+
+</body>
+</html>

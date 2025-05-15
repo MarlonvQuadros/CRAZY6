@@ -1,0 +1,44 @@
+  // Logo clicável volta para início
+  logo.addEventListener('click', () => {
+    mostrarSecao('inicio');
+    ativarMenu(linkInicio);
+  });
+
+  // Álbuns
+  const fotosPorAlbum = {
+    'MADS': ['foto1.jpg', 'foto2.jpg', 'foto3.jpg'],
+    'GEK': ['foto4.jpg', 'foto5.jpg'],
+    'BALMY': ['foto6.jpg', 'foto7.jpg'],
+    'FOOL': ['fool1.jpg', 'fool2.jpg', 'fool3.jpg']
+  };
+
+  function mostrarAlbuns(show) {
+    document.querySelector('.albuns').style.display = show ? 'flex' : 'none';
+  }
+
+  albuns.forEach(album => {
+    album.addEventListener('click', () => {
+      mostrarAlbuns(false);
+      btnVoltar.style.display = 'inline-block';
+      fotosDiv.innerHTML = '';
+      const albumKey = album.getAttribute('data-album');
+      fotosPorAlbum[albumKey].forEach(foto => {
+        const img = document.createElement('img');
+        img.src = `imagens/${foto}`;
+        img.alt = albumKey + ' foto';
+        fotosDiv.appendChild(img);
+      });
+    });
+  });
+
+  btnVoltar.addEventListener('click', () => {
+    mostrarAlbuns(true);
+    btnVoltar.style.display = 'none';
+    fotosDiv.innerHTML = '';
+  });
+
+  // Ícones do carrinho e admin
+  document.getElementById('icone-carrinho').src = 'https://upload.wikimedia.org/wikipedia/commons/0/0b/Shopping_cart_font_awesome_white.svg';
+  document.getElementById('icone-admin').src = 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Admin_icon_white.svg';
+
+});

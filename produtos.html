@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+ <header>
+  <div class="top-bar">
+    <div class="logo">
+  <h1><img src="imagens/logo.png" alt="logo" class="logo"></h1>
+    </div>
+    <div class="top-links">
+      <a href="admin.html"> <img src="imagens/adm.png" alt="admin" class="icon-admin"></a>
+      <a href="carrinho.html"><img src="imagens/buycar.png" alt="carrinho" class="icon-carrinho"> </a>
+    </div>
+
+  </div>
+
+  <nav class="navbar">
+   <a href="index.html">Início</a>
+  </nav>
+</header>
+  <main>
+    <label for="filtro">Filtrar por nome:</label>
+    <input type="text" id="filtro" placeholder="Digite oque deseja...">
+    <div id="produtos" class="grid"></div>
+    <div id="lightbox" class="lightbox" onclick="fecharLightbox()">
+  <img id="lightbox-img" src="" alt="">
+  <p id="lightbox-desc"></p>
+</div>
+
+  </main>
+  <script src="script.js"></script>
+
+<footer class="rodape">
+  <span>Crazy6 © 2025</span>
+  <a href="https://instagram.com/havanaworks" target="_blank" class="insta-link">
+    <i class="fab fa-instagram"></i>
+    <span>@havanaworks</span>
+  </a>
+</footer>
+
+</body>
+</html>

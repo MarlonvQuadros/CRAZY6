@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Carrinho</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <header>
+    <h1>Seu Carrinho</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+    </nav>
+  </header>
+  <main>
+    <div id="carrinho" class="grid"></div>
+    <p id="total"></p>
+  </main>
+ <script>
+  let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  const container = document.getElementById('carrinho');
+  const totalElement = document.getElementById('total');
+
+  function salvarCarrinho() {
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    renderizarCarrinho();
+  }
+
+  function aumentarQtd(index) {
+    carrinho[index].quantidade += 1;
+    salvarCarrinho();
+  }
+
+  function diminuirQtd(index) {
+    if (carrinho[index].quantidade > 1) {
+      carrinho[index].quantidade -= 1;
+    } else {
+      carrinho.splice(index, 1);
+    }
+    salvarCarrinho();
+  }
+
+  function removerItem(index) {
+    carrinho.splice(index, 1);
+    salvarCarrinho();
+  }
+
+  function renderizarCarrinho() {
+    container.innerHTML = "";
+    let total = 0;
+
+    if (carrinho.length === 0) {
+      container.innerHTML = "<p>O carrinho está vazio.</p>";
+      totalElement.innerText = "";
+      return;
+    }
+
+    carrinho.forEach((produto, index) => {
+      const div = document.createElement('div');
+      div.className = "card";
+      div.innerHTML = `
+        <h3>${produto.nome}</h3>
+        <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+        <p>Quantidade: ${produto.quantidade}</p>
+        <p>Subtotal: R$ ${(produto.preco * produto.quantidade).toFixed(2)}</p>
+        <button onclick="aumentarQtd(${index})">+</button>
+        <button onclick="diminuirQtd(${index})">-</button>
+        <button onclick="removerItem(${index})">Remover</button>
+      `;
+      container.appendChild(div);
+      total += produto.preco * produto.quantidade;
+    });
+
+    totalElement.innerText = `Total: R$ ${total.toFixed(2)}`;
+  }
+
+  renderizarCarrinho();
+</script>
+
+<footer class="rodape">
+  <span>Crazy6 © 2025</span>
+  <a href="https://instagram.com/havanaworks" target="_blank" class="insta-link">
+    <i class="fab fa-instagram"></i>
+    <span>@havanaworks</span>
+  </a>
+</footer>
+
+</body>
+</html>

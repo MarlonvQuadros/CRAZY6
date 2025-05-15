@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel Admin - Crazy Six</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    /* Pequeno estilo para as prévias */
+    #img-principal-preview,
+    .img-galeria-preview {
+      max-width: 150px;
+      margin-top: 5px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    #galeria-preview-container {
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    if (localStorage.getItem("adminLogado") !== "true") {
+      window.location.href = "login.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("adminLogado");
+      window.location.href = "login.html";
+    }
+  </script>
+
+  <header>
+    <h1>Painel do Administrador</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="produtos.html">Produtos</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Seção Produtos -->
+    <section>
+      <h2>Adicionar Produto</h2>
+      <form id="form-produto">
+        <input type="text" id="nome" placeholder="Nome do Produto" required />
+        <input type="number" id="preco" placeholder="Preço" required />
+        <textarea id="descricao" placeholder="Descrição" required></textarea>
+        <input
+          type="file"
+          id="imagens-produto"
+          multiple
+          accept="image/*"
+        />
+        <button type="submit">Adicionar Produto</button>
+        <button type="button" onclick="restaurarProdutosPadrao()">
+          Restaurar Produtos Padrão
+        </button>
+      </form>
+      <ul id="lista-produtos"></ul>
+    </section>
+
+    <hr />
+
+    <!-- Seção Roles -->
+    <section>
+      <h2>Roles</h2>
+      <form id="form-role" onsubmit="event.preventDefault(); salvarEdicaoRole();">
+        <input type="hidden" id="role-index" value="" />
+        <textarea
+          id="role-descricao"
+          placeholder="Descrição do Role"
+          rows="3"
+          required
+        ></textarea>
+
+        <label>
+          Imagem Principal:
+          <input type="file" id="role-img-principal" accept="image/*" />
+        </label>
+        <br />
+        <!-- Preview imagem principal -->
+        <img
+          id="img-principal-preview"
+          src=""
+          alt="Preview Imagem Principal"
+          style="display: none;"
+        />
+
+        <br />
+        <label>
+          Imagens da Galeria (multiple):
+          <input
+            type="file"
+            id="role-img-galeria"
+            accept="image/*"
+            multiple
+          />
+        </label>
+
+        <!-- Preview galeria -->
+        <div id="galeria-preview-container"></div>
+
+        <button type="submit">Salvar Role</button>
+      </form>
+      <ul id="lista-roles"></ul>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <button onclick="logout()">Sair</button>
+    <br />
+    <span>Crazy6 © 2025</span>
+    <a
+      href="https://instagram.com/havanaworks"
+      target="_blank"
+      class="insta-link"
+    >
+      <i class="fab fa-instagram"></i>
+      <span>@havanaworks</span>
+    </a>
+  </footer>
+
+  <script src="admin.js"></script>
+
+  <script>
+    // Preview imagem principal
+    const inputImgPrincipal = document.getElementById("role-img-principal");
+    const previewImgPrincipal = document.getElementById("img-principal-preview");
+
+    inputImgPrincipal.addEventListener("change", () => {
+      const file = inputImgPrincipal.files[0];
+      if (file) {
+        previewImgPrincipal.style.display = "block";
+        previewImgPrincipal.src = URL.createObjectURL(file);
+      } else {
+        previewImgPrincipal.style.display = "none";
+        previewImgPrincipal.src = "";
+      }
+    });
+
+    // Preview múltiplas imagens da galeria
+    const inputGaleria = document.getElementById("role-img-galeria");
+    const galeriaPreviewContainer = document.getElementById(
+      "galeria-preview-container"
+    );
+
+    inputGaleria.addEventListener("change", () => {
+      galeriaPreviewContainer.innerHTML = ""; // Limpa previews antigos
+      const files = inputGaleria.files;
+      if (files.length > 0) {
+        for (const file of files) {
+          const img = document.createElement("img");
+          img.classList.add("img-galeria-preview");
+          img.src = URL.createObjectURL(file);
+          galeriaPreviewContainer.appendChild(img);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
